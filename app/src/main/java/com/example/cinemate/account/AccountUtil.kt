@@ -43,3 +43,28 @@ fun connectLogin(loginRequest: LoginRequest, checkComplete : (token: LoginResult
             }
         })
 }
+
+fun connectSignup (signupRequest: SignupRequest, checkComplete: (isComplete: Boolean) -> Unit) {
+    //2. service 객체 생성
+    retrofit.create(SignupService::class.java)
+        .signUp(signupRequest)
+        //4. 네트워크 통신
+        .enqueue(object : Callback<SignupResponse> {
+            override fun onResponse(call: Call<SignupResponse>, response: Response<SignupResponse>) {
+                Log.d(TAG, "회원가입 결과 -------------------------------------------")
+                Log.d(TAG, "onResponse: ${response.body().toString()}")
+
+                if(response.body() != null) {
+                    if (response.body()!!.success){
+                        checkComplete(true)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
+                Log.d(TAG, "회원가입 결과 실패 -------------------------------------------")
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+}

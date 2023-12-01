@@ -2,15 +2,16 @@ package com.example.cinemate.account
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginRequest (
-    @SerializedName("email")
-    val email: String, //이메일
+data class SignupRequest (
+    @SerializedName("email") val email : String,
+    @SerializedName("password") val password : String,
+    @SerializedName("nickname") val nickname: String,
+    @SerializedName("phone") val phone : String,
+    @SerializedName("genere") val genere : String
 
-    @SerializedName("password")
-    val password: String
 )
 
-data class LoginResponse (
+data class SignupResponse (
     @SerializedName("success")
     val success: Boolean,
 
@@ -21,12 +22,13 @@ data class LoginResponse (
     val message: String,
 
     @SerializedName("result")
-    val result: LoginResult
+    val result: SignupResult
 
 )
 
-data class LoginResult (
+data class SignupResult (
     @SerializedName("id") val id : Long,
     @SerializedName("jwt") val jwt: String?,
     @SerializedName("nickname") val nickname: String
 )
+

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-android")
 }
 
 android {
@@ -80,4 +81,7 @@ dependencies {
     //Okhttp3
     implementation("com.squareup.okhttp3:okhttp:4.8.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.8.0")
+
+    //카카오톡
+    implementation("com.kakao.sdk:v2-user:2.12.0") // 카카오 로그인
 }

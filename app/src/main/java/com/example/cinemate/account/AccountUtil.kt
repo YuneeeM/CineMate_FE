@@ -68,3 +68,28 @@ fun connectSignup (signupRequest: SignupRequest, checkComplete: (isComplete: Boo
             }
         })
 }
+
+fun connectKakao (kakaoSignupRequest: KakaoSignupRequest,checkComplete:  (token: KakaoResult) -> Unit ) {
+    //2. service 객체 생성
+    retrofit.create(KakaoService::class.java)
+        .kakaoSignup(kakaoSignupRequest)
+        //4. 네트워크 통신
+        .enqueue(object : Callback<KakaoSignupResponse> {
+            override fun onResponse(call: Call<KakaoSignupResponse>, response: Response<KakaoSignupResponse>) {
+                Log.d(TAG, "카카오 로그인 결과 -------------------------------------------")
+                Log.d(TAG, "onResponse: ${response.body().toString()}")
+
+                if(response.body()!!.result !=null) {
+                    if (response.body()!!.success){
+                        checkComplete(response.body()!!.result)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<KakaoSignupResponse>, t: Throwable) {
+                Log.d(TAG, "카카오 로그인 결과 실패 -------------------------------------------")
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+}

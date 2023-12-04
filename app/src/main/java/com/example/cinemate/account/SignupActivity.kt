@@ -1,10 +1,9 @@
 package com.example.cinemate.account
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.cinemate.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cinemate.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {

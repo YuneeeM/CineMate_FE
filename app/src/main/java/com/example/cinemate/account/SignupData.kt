@@ -12,7 +12,7 @@ data class SignupRequest (
 )
 
 data class SignupResponse (
-    @SerializedName("success")
+    @SerializedName("isSuccess")
     val success: Boolean,
 
     @SerializedName("code")

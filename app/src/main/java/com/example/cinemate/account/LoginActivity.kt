@@ -69,8 +69,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 //저장되어있는 jwt가 있으면, 바로 자동 로그인
                 else{
-                    val kakao_jwt = ApplicationClass.sharedPreferences.getString("jwt","")
-                    //자동로그인 추가
+                    connectAuto(checkComplete = {successAuto(it)})
                 }
             }
         }
@@ -110,8 +109,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     //저장되어있는 jwt가 있으면, 바로 자동 로그인
                     else{
-                        val kakao_jwt2 = ApplicationClass.sharedPreferences.getString("jwt","")
-                        //자동로그인 추가
+                        connectAuto(checkComplete = {successAuto(it)})
                     }
                 }
             }
@@ -134,6 +132,17 @@ class LoginActivity : AppCompatActivity() {
 
     //카카오 성공시
     private fun successKakao(token: KakaoResult){
+        var jwtToken = token.jwt.toString()
+
+        ApplicationClass.sharedPreferences.setString("jwt",jwtToken)
+
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    //자동 로그인 성공시
+    private fun successAuto(token: AutoLoginResult){
         var jwtToken = token.jwt.toString()
 
         ApplicationClass.sharedPreferences.setString("jwt",jwtToken)

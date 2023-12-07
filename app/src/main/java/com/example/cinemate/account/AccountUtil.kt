@@ -93,3 +93,29 @@ fun connectKakao (kakaoSignupRequest: KakaoSignupRequest,checkComplete:  (token:
             }
         })
 }
+
+fun connectAuto (checkComplete:  (token: AutoLoginResult) -> Unit){
+    //2. service 객체 생성
+    retrofit.create(AutoLoginService::class.java)
+        .autoLogin(xAccessToken = ApplicationClass.sharedPreferences.getString("jwt",""))
+        //4. 네트워크 통신
+        .enqueue(object : Callback<AutoLoginResponse> {
+            override fun onResponse(call: Call<AutoLoginResponse>, response: Response<AutoLoginResponse>) {
+                Log.d(TAG, "자동 로그인 결과 -------------------------------------------")
+                Log.d(TAG, "onResponse: ${response.body().toString()}")
+
+                if(response.body()!!.result !=null) {
+                    if (response.body()!!.success){
+                        checkComplete(response.body()!!.result)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<AutoLoginResponse>, t: Throwable) {
+                Log.d(TAG, "자동 로그인 결과 실패 -------------------------------------------")
+                Log.e(TAG, "onFailure: ${t.message}")
+
+            }
+        })
+}

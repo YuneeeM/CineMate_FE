@@ -84,4 +84,7 @@ dependencies {
 
     //카카오톡
     implementation("com.kakao.sdk:v2-user:2.12.0") // 카카오 로그인
+
+    // 이미지 라운딩을 위한 부분
+    implementation("com.makeramen:roundedimageview:2.3.0")
 }

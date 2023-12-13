@@ -87,4 +87,8 @@ dependencies {
 
     // 이미지 라운딩을 위한 부분
     implementation("com.makeramen:roundedimageview:2.3.0")
+
+    //github bumptech
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/people_movie_list_img"
+        android:layout_width="120dp"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
+        app:riv_corner_radius="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/people_movie_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="제목"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/people_movie_list_town"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="부산 기장군"
+            android:textSize="12sp"
+            android:textColor="@color/purple_700" />
+
+        <TextView
+            android:id="@+id/people_movie_list_theater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="영화관"
+            android:textSize="12sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/people_movie_list_pubdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="상영날짜"
+            android:textSize="12sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/people_movie_list_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="소개글"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="12sp"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,26 +1,27 @@
 package com.example.cinemate.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.cinemate.R
 import com.example.cinemate.databinding.SearchMovieListItemBinding
 import com.example.cinemate.searchpage.Item
-import com.example.cinemate.searchpage.SearchData
+import com.example.cinemate.searchpage.MovieResponse
 
-class SearchAdapter(private val searchData: SearchData) :
+class SearchAdapter(val searchData: MovieResponse, var context: Context) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private lateinit var viewBinding: SearchMovieListItemBinding
 
-    var datas = mutableListOf<SearchData>()
-
     // 아이템의 갯수
     override fun getItemCount(): Int {
-        return searchData.items.count()
+        return searchData.result.size
     }
 
     override fun onCreateViewHolder(
@@ -35,16 +36,18 @@ class SearchAdapter(private val searchData: SearchData) :
     }
 
     override fun onBindViewHolder(holder: SearchAdapter.SearchViewHolder, position: Int) {
-        holder.bind(searchData.items[position])
+       when(holder){
+           is ViewHolder -> holder.bind(searchData.result[position])
+       }
     }
 
     inner class SearchViewHolder(private val binding: SearchMovieListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Item) {
             // Glide 사용하여 이미지 로드
-            Glide.with(binding.root.context).load(data.image)
-                .apply(RequestOptions().override(300, 450))
-                .apply(RequestOptions.centerCropTransform())
+            Glide.with(context).load(data.image)
+                .apply(RequestOptions().override(120, 180))
+                .error(R.drawable.cinemate_logo) // 로드 실패 시 표시할 이미지 지정
                 .into(binding.mainMovieListImg)
 
             // 텍스트뷰에 데이터 설정

@@ -15,6 +15,8 @@ import com.example.cinemate.R
 import com.example.cinemate.adapter.MainMovieAdapter
 import com.example.cinemate.databinding.FragmentHomeBinding
 import com.example.cinemate.homepage.MainMovieDataBitmap
+import com.example.cinemate.homepage.connectMainBoxoffice
+import com.example.cinemate.searchpage.MovieResponse
 
 class HomeFragment : Fragment() {
 
@@ -22,7 +24,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     //메인 영화 리스트
-    private val mainMovieDatas = mutableListOf<MainMovieDataBitmap>()
     private lateinit var mainMainMovieAdapter: MainMovieAdapter
 
     override fun onCreateView(
@@ -57,6 +58,8 @@ class HomeFragment : Fragment() {
                 .show()
         }
 
+        initRecycler()
+
         //영화 순위 더보기 버튼 선택
         binding.mainMovieListMore.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -69,10 +72,16 @@ class HomeFragment : Fragment() {
     //recyclerview 세팅
     private fun initRecycler() {
         //영화 메인 recyclerview 세팅
-        mainMainMovieAdapter = MainMovieAdapter((requireContext()))
-        binding.mainMovieListRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.mainMovieListRecyclerview.adapter = mainMainMovieAdapter
-        mainMainMovieAdapter.datas = mainMovieDatas
+       connectMainBoxoffice ( checkComplete={successMainMovieDate(it)} )
+
+    }
+
+    private fun successMainMovieDate(it: MovieResponse) {
+        mainMainMovieAdapter = MainMovieAdapter(it,requireContext())
+        binding.mainMovieListRecyclerview.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.mainMovieListRecyclerview.adapter=mainMainMovieAdapter
+
 
     }
 

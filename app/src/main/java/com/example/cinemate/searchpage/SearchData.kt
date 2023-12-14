@@ -1,14 +1,27 @@
 package com.example.cinemate.searchpage
 
-data class SearchData(val items: List<Item>)
+import com.google.gson.annotations.SerializedName
+
+data class MovieResponse(
+    @SerializedName("isSuccess")
+    val success: Boolean,
+
+    @SerializedName("code")
+    val code: Int,
+
+    @SerializedName("message")
+    val message: String,
+
+    @SerializedName("result")
+    val result: List<Item>)
 
 data class Item(
-    val title : String,
-    val link : String,
-    val image : String,
-    val subtitle : String,
-    val pubDate : String,
-    val director : String,
-    val actor : String,
-    val usrRating : String
+    @SerializedName("title") val title : String,
+    @SerializedName("link") val link : String,
+    @SerializedName("image") val image : String,
+    @SerializedName("subtitle") val subtitle : String,
+    @SerializedName("pubDate") val pubDate : String,
+    @SerializedName("director") val director : String,
+    @SerializedName("actor") val actor : String,
+    @SerializedName("userRating") val usrRating : String
 )

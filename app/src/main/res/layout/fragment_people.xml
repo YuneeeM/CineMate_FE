@@ -1,14 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.PeopleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="모으기" />
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout" />
+
+        <LinearLayout
+            android:id="@+id/people_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@id/toolbar"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:orientation="horizontal">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/cinemate_banner01"
+                    android:layout_marginRight="10dp"
+                    app:riv_corner_radius="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/people_make_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text=" 약속방 만들기"
+                    android:drawableLeft="@drawable/baseline_person_add_alt_1_24"
+                    android:padding="8dp"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#707070">
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/people_movie_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#BDBCBC"
+                    android:hint="영화 제목"
+                    android:padding="15dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#707070"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/people_town_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#BDBCBC"
+                    android:hint="사는 지역"
+                    android:padding="15dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#707070"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="@color/purple_500"
+                    android:layout_marginRight="5dp"
+                    android:text="날짜"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck"/>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/people_search_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="@color/colorSelected"
+                    android:text="검색"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+
+            </LinearLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/people_list_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/people_list_item" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

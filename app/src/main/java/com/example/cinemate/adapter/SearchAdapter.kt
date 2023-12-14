@@ -14,7 +14,7 @@ import com.example.cinemate.databinding.SearchMovieListItemBinding
 import com.example.cinemate.searchpage.Item
 import com.example.cinemate.searchpage.MovieResponse
 
-class SearchAdapter(val searchData: MovieResponse, var context: Context) :
+class SearchAdapter(var searchData: MovieResponse, var context: Context) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private lateinit var viewBinding: SearchMovieListItemBinding
@@ -64,5 +64,10 @@ class SearchAdapter(val searchData: MovieResponse, var context: Context) :
                 binding.root.context.startActivity(webIntent)
             }
         }
+    }
+
+    fun updateData(newMovieResponse: MovieResponse) {
+        searchData = newMovieResponse
+        notifyDataSetChanged()
     }
 }

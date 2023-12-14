@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
                 <!-- 영화 순위 -->
                 <LinearLayout
                     android:id="@+id/main_movie_list_layout"
@@ -48,7 +47,8 @@
                             android:text="영화 순위"
                             android:textColor="#000000"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/main_movie_list_more"
@@ -79,6 +79,67 @@
                             tools:listitem="@layout/main_movie_list_item" />
 
                     </ScrollView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp">
+
+                        <TextView
+                            android:id="@+id/main_movie_community_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="커뮤니티"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/main_movie_community01"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:padding="5dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/cinemate_banner"
+                            app:riv_corner_radius="10dp"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/main_movie_community02"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:padding="5dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/cinemate_banner02"
+                            app:riv_corner_radius="10dp"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

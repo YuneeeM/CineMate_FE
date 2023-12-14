@@ -13,7 +13,7 @@ import com.example.cinemate.databinding.MainMovieListItemBinding
 import com.example.cinemate.searchpage.Item
 import com.example.cinemate.searchpage.MovieResponse
 
-class MainMovieAdapter(val mainData: MovieResponse, var context: Context) :
+class MainMovieAdapter(var mainData: MovieResponse, var context: Context) :
     RecyclerView.Adapter<MainMovieAdapter.MainMovieViewHolder>() {
 
     private lateinit var viewBinding: MainMovieListItemBinding
@@ -57,5 +57,10 @@ class MainMovieAdapter(val mainData: MovieResponse, var context: Context) :
                 binding.root.context.startActivity(webIntent)
             }
         }
+    }
+
+    fun updateData(newMovieResponse: MovieResponse) {
+        mainData = newMovieResponse
+        notifyDataSetChanged()
     }
 }

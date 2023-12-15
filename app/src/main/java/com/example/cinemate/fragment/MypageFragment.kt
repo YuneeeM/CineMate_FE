@@ -35,7 +35,7 @@ class MypageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Toolbar
-        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar04)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         // 로그아웃 버튼 선택
@@ -55,7 +55,7 @@ class MypageFragment : Fragment() {
                 ApplicationClass.sharedPreferences.removeString("jwt")
 
                 // LoginActivity로 이동합니다.
-                val intent = Intent(context, LoginActivity::class.java)
+                val intent = Intent(requireActivity(), LoginActivity::class.java)
 
                 // 이전 액티비티를 모두 삭제하고 이 액티비티를 새로운 작업의 최상위로 만듭니다.
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

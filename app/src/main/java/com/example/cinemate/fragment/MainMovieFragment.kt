@@ -41,7 +41,7 @@ class MainMovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Toolbar
-        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar11)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         // 로그아웃 버튼 선택
@@ -54,14 +54,14 @@ class MainMovieFragment : Fragment() {
 
     private fun initRecycler() {
         // 영화 메인 RecyclerView 세팅
-        connectMainBoxoffice { successMainMovieDate(it) }
+        connectMainBoxoffice(requireContext(), checkComplete = { successMainMovieDate(it) })
     }
 
     private fun successMainMovieDate(it: MovieResponse) {
         if (!::rvAdapter.isInitialized) {
             rvAdapter = MainMovieMoreAdapter(it, requireContext())
             binding.mainMoreMovieListRecyclerview.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             binding.mainMoreMovieListRecyclerview.adapter = rvAdapter
         } else {
             rvAdapter.updateData(it) // 기존 어댑터 업데이트 로직
@@ -77,7 +77,7 @@ class MainMovieFragment : Fragment() {
                 ApplicationClass.sharedPreferences.removeString("jwt")
 
                 // LoginActivity로 이동합니다.
-                val intent = Intent(context, LoginActivity::class.java)
+                val intent = Intent(requireActivity(), LoginActivity::class.java)
 
                 // 이전 액티비티를 모두 삭제하고 이 액티비티를 새로운 작업의 최상위로 만듭니다.
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

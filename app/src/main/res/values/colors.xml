@@ -11,4 +11,7 @@
     <!--bottom navi-->
     <color name="colorSelected">#E91E63</color>
     <color name="colorUnselected">#680D2C</color>
+
+    <!--like button-->
+    <color name="colorUnselected1">#000000</color>
 </resources>

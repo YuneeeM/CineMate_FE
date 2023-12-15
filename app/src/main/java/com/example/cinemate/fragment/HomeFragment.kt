@@ -1,5 +1,6 @@
 package com.example.cinemate.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.R
+import com.example.cinemate.account.LoginActivity
 import com.example.cinemate.adapter.MainMovieAdapter
 import com.example.cinemate.databinding.FragmentHomeBinding
 import com.example.cinemate.homepage.connectMainBoxoffice
@@ -50,7 +52,7 @@ class HomeFragment : Fragment() {
         // 영화 순위 더보기 버튼 선택
         binding.mainMovieListMore.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.menu_home, MainMovieFragment())
+            transaction.replace(R.id.f_home, MainMovieFragment())
             transaction.addToBackStack(null)
             transaction.commit()
         }
@@ -80,6 +82,14 @@ class HomeFragment : Fragment() {
             .setPositiveButton("네") { _, _ ->
                 // SharedPreferences에서 "jwt" 키를 삭제합니다.
                 ApplicationClass.sharedPreferences.removeString("jwt")
+
+                // LoginActivity로 이동합니다.
+                val intent = Intent(context, LoginActivity::class.java)
+
+                // 이전 액티비티를 모두 삭제하고 이 액티비티를 새로운 작업의 최상위로 만듭니다.
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                startActivity(intent)
             }
             .setNegativeButton("아니요") { dialog, _ ->
                 // '아니요'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
@@ -87,6 +97,7 @@ class HomeFragment : Fragment() {
             }
             .show()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

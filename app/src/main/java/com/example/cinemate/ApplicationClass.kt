@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 class ApplicationClass : Application() {
   companion object {
       lateinit var sharedPreferences : PreferenceUtil
+          private set
   }
 
     override fun onCreate() {

@@ -1,10 +1,12 @@
 package com.example.cinemate.account
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.MainActivity
 import com.example.cinemate.databinding.ActivityLoginBinding
@@ -26,14 +28,32 @@ class LoginActivity : AppCompatActivity() {
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //이전 로그인
+        var jwt : String = ApplicationClass.sharedPreferences.getString("jwt","")
+
+        if(jwt.length>0){
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.activityLoginTvSignup.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
+            finish()
+        })
+
         binding.activityLoginBtnLogin.setOnClickListener(View.OnClickListener {
+
+            // 키보드 숨기기
+            hideKeyboard()
+
             //3. call 객체 생성
             val email = binding.activityLoginEtEmail.text.toString()
             val password = binding.activityLoginEtPassword.text.toString()
 
 
             if(email.length > 0 && password.length > 0){
-                connectLogin(LoginRequest(email,password),
+                connectLogin(this,LoginRequest(email,password),
                 checkComplete = { successLogin(it) })
             }
         })
@@ -51,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("LOGIN", "카카오계정으로 로그인 실패", error)
             } else if (token != null) {
                 Log.i("LOGIN", "카카오계정으로 로그인 성공 ${token.accessToken}")
-                connectKakao(KakaoSignupRequest(token.accessToken), checkComplete = {
+                connectKakao(this,KakaoSignupRequest(token.accessToken), checkComplete = {
                     successKakao(it)
                 })
 
@@ -69,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 //저장되어있는 jwt가 있으면, 바로 자동 로그인
                 else{
-                    connectAuto(checkComplete = {successAuto(it)})
+                    connectAuto(this,checkComplete = {successAuto(it)})
                 }
             }
         }
@@ -91,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
                     UserApiClient.instance.loginWithKakaoAccount(this@LoginActivity, callback = callback)
                 } else if (token != null) {
                     Log.i("LOGIN", "카카오톡으로 로그인 성공 ${token.accessToken}")
-                    connectKakao(KakaoSignupRequest(token.accessToken), checkComplete = {
+                    connectKakao(this,KakaoSignupRequest(token.accessToken), checkComplete = {
                         successKakao(it)
                     })
 
@@ -109,7 +129,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     //저장되어있는 jwt가 있으면, 바로 자동 로그인
                     else{
-                        connectAuto(checkComplete = {successAuto(it)})
+                        connectAuto(this,checkComplete = {successAuto(it)})
                     }
                 }
             }
@@ -151,6 +171,15 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun hideKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

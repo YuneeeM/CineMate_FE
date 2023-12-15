@@ -52,7 +52,7 @@
         android:background="@drawable/bg_login_edit"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_signup_etEmail"/>
@@ -106,7 +106,7 @@
         android:background="@drawable/bg_login_edit"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
-        android:inputType="phone"
+        android:inputType="text"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_signup_etPhone"/>

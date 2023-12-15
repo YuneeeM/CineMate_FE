@@ -1,5 +1,6 @@
 package com.example.cinemate.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.R
+import com.example.cinemate.account.LoginActivity
 import com.example.cinemate.databinding.FragmentMypageBinding
 import com.example.cinemate.searchpage.connectSearchData
 
@@ -51,6 +53,14 @@ class MypageFragment : Fragment() {
             .setPositiveButton("네") { _, _ ->
                 // SharedPreferences에서 "jwt" 키를 삭제합니다.
                 ApplicationClass.sharedPreferences.removeString("jwt")
+
+                // LoginActivity로 이동합니다.
+                val intent = Intent(context, LoginActivity::class.java)
+
+                // 이전 액티비티를 모두 삭제하고 이 액티비티를 새로운 작업의 최상위로 만듭니다.
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                startActivity(intent)
             }
             .setNegativeButton("아니요") { dialog, _ ->
                 // '아니요'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.

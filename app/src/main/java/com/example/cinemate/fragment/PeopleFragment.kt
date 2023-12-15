@@ -1,18 +1,23 @@
 package com.example.cinemate.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.R
+import com.example.cinemate.adapter.PeopleAdapter
 import com.example.cinemate.databinding.FragmentPeopleBinding
-import com.example.cinemate.searchpage.connectSearchData
+import com.example.cinemate.peoplepage.ConnectionResponse
+import com.example.cinemate.peoplepage.connectPeopleData
 
 
 class PeopleFragment : Fragment() {
@@ -20,12 +25,8 @@ class PeopleFragment : Fragment() {
     private var _binding:FragmentPeopleBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var rvAdapter: PeopleAdapter
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +49,32 @@ class PeopleFragment : Fragment() {
             showLogoutDialog()
         }
 
+        binding.peopleSearchBtn.setOnClickListener{
+            if(binding.peopleMovieEdit.text.isNotEmpty() &&
+                binding.peopleTownEdit.text.isNotEmpty()){
+                connectPeopleData(binding.peopleMovieEdit.text.toString(),
+                    binding.peopleTownEdit.text.toString(),
+                    binding.peopleDateEdit.text.toString()) {
+                    successPeopleData(it)
+                }
+            }
+
+            // 키보드 숨기기
+            hideKeyboard()
+        }
+
+
+    }
+
+    private fun successPeopleData(it: ConnectionResponse) {
+        if (!::rvAdapter.isInitialized) {
+            rvAdapter = PeopleAdapter(it, requireContext())
+            binding.peopleListRecyclerview.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            binding.peopleListRecyclerview.adapter = rvAdapter
+        } else {
+            rvAdapter.updateData(it)
+        }
 
     }
 
@@ -64,6 +91,16 @@ class PeopleFragment : Fragment() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    //키보드 숨기기
+    private fun hideKeyboard() {
+        val inputMethodManager =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            requireView().windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
     }
 
 

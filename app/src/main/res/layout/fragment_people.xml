@@ -112,12 +112,12 @@
                     android:background="@drawable/bg_login_edit"
                     android:backgroundTint="#CB9BD3"
                     android:hint="날짜"
+                    android:inputType="date"
                     android:padding="15dp"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
                     android:textSize="15sp"
                     android:textStyle="bold"/>
-
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/people_search_btn"
@@ -140,7 +140,7 @@
                 android:id="@+id/people_list_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/people_list_item" />

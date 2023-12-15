@@ -24,7 +24,7 @@ data class ConnectionResult (
     @SerializedName("theather") val theather : String,
     @SerializedName("address") val address : String,
     @SerializedName("sentence") val sentence : String,
-    @SerializedName("createAt") val createAt : Timestamp,
-    @SerializedName("meatDate") val meatDate : LocalDate,
+    @SerializedName("createAt") val createAt : String,
+    @SerializedName("meatDate") val meatDate : String,
 
     )

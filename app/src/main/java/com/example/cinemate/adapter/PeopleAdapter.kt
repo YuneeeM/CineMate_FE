@@ -48,7 +48,7 @@ class PeopleAdapter(var peopleDate: ConnectionResponse, var context: Context) :
             binding.peopleMovieListTitle.text = data.title
             binding.peopleMovieListTown.text = data.address
             binding.peopleMovieListTheater.text=data.theather
-            binding.peopleMovieListPubdate.text ="관람날 : ${data.meatDate.toString()}"
+            binding.peopleMovieListPubdate.text ="관람날 : ${data.meatDate}"
             binding.peopleMovieListContent.text = data.sentence
 
         }

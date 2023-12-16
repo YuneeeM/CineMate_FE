@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.R
 import com.example.cinemate.account.LoginActivity
+import com.example.cinemate.adapter.GenreAdapter
 import com.example.cinemate.adapter.MainMovieAdapter
 import com.example.cinemate.databinding.FragmentHomeBinding
+import com.example.cinemate.homepage.connectGenre
 import com.example.cinemate.homepage.connectMainBoxoffice
 import com.example.cinemate.searchpage.MovieResponse
 
@@ -26,6 +28,9 @@ class HomeFragment : Fragment() {
 
     // 메인 영화 리스트
     private lateinit var mainMainMovieAdapter: MainMovieAdapter
+
+    //장르 리스트
+    private lateinit var genreAdapter: GenreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +67,19 @@ class HomeFragment : Fragment() {
     private fun initRecycler() {
         // 영화 메인 RecyclerView 세팅
         connectMainBoxoffice(requireContext(), checkComplete = { successMainMovieDate(it) } )
+        connectGenre(requireContext(), checkComplete = {successGenreData(it)})
+    }
+
+    private fun successGenreData(it: MovieResponse) {
+        if (!::genreAdapter.isInitialized) {
+            genreAdapter= GenreAdapter(it, requireContext())
+            binding.mainGenreListRecyclerview.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.mainGenreListRecyclerview.adapter = genreAdapter
+        } else {
+            genreAdapter.updateData(it) // 기존 어댑터 업데이트 로직
+        }
+
     }
 
     private fun successMainMovieDate(it: MovieResponse) {

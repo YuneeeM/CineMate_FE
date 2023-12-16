@@ -43,6 +43,21 @@ data class MovieLikeResponse(
 
 )
 
+data class MovieLikeResponse01(
+    @SerializedName("isSuccess")
+    val success: Boolean,
+
+    @SerializedName("code")
+    val code: Int,
+
+    @SerializedName("message")
+    val message: String,
+
+    @SerializedName("result")
+    val result: MovieLikeResult
+
+)
+
 data class MovieLikeResult(
     @SerializedName("movieLikeId") val movieLikeId : String,
 
@@ -59,3 +74,52 @@ data class MovieLikeResult(
     @SerializedName("nickname") val nickname : String,
 
 )
+
+data class CResponse (
+    @SerializedName("isSuccess")
+    val success: Boolean,
+
+    @SerializedName("code")
+    val code: Int,
+
+    @SerializedName("message")
+    val message: String,
+
+    @SerializedName("result")
+    val result: List<CResult>
+
+)
+
+
+data class CResponse01 (
+    @SerializedName("isSuccess")
+    val success: Boolean,
+
+    @SerializedName("code")
+    val code: Int,
+
+    @SerializedName("message")
+    val message: String,
+
+    @SerializedName("result")
+    val result: CResult
+
+)
+
+
+data class CResult(
+    @SerializedName("connectionLikeId") val connectionLikeId : String,
+
+    @SerializedName("title") val title : String,
+    @SerializedName("link") val link : String,
+    @SerializedName("image") val image : String,
+    @SerializedName("subtitle") val subtitle : String,
+    @SerializedName("pubDate") val pubDate : String,
+    @SerializedName("director") val director : String,
+    @SerializedName("actor") val actor : String,
+    @SerializedName("userRating") val usrRating : String,
+    @SerializedName("genre") val genre : String,
+
+    @SerializedName("nickname") val nickname : String,
+
+    )

@@ -165,10 +165,10 @@ fun connectPostMovieLike(context: Context,title:String, checkComplete: (isComple
     retrofit.create(MypageService::class.java)
         .postLikeMovie(jwt = jwtTokenValue!!,title)
         //4. 네트워크 통신
-        .enqueue(object : Callback<MovieLikeResponse> {
+        .enqueue(object : Callback<MovieLikeResponse01> {
             override fun onResponse(
-                call: Call<MovieLikeResponse>,
-                response: Response<MovieLikeResponse>
+                call: Call<MovieLikeResponse01>,
+                response: Response<MovieLikeResponse01>
             ) {
                 Log.d(
                     ContentValues.TAG,
@@ -193,7 +193,7 @@ fun connectPostMovieLike(context: Context,title:String, checkComplete: (isComple
                 }
             }
 
-            override fun onFailure(call: Call<MovieLikeResponse>, t: Throwable) {
+            override fun onFailure(call: Call<MovieLikeResponse01>, t: Throwable) {
                 Log.d(
                     ContentValues.TAG,
                     "좋아요 등록 결과 실패 -------------------------------------------"
@@ -202,4 +202,96 @@ fun connectPostMovieLike(context: Context,title:String, checkComplete: (isComple
             }
         })
 }
+
+
+fun connectConnectionLike(context: Context, checkComplete: (it: CResponse) -> Unit) {
+    setJwt()
+    //2. service 객체 생성
+    retrofit.create(MypageService::class.java)
+        .getLikesConnection(jwt = jwtTokenValue!!)
+        //4. 네트워크 통신
+        .enqueue(object : Callback<CResponse> {
+            override fun onResponse(
+                call: Call<CResponse>,
+                response: Response<CResponse>
+            ) {
+                Log.d(
+                    ContentValues.TAG,
+                    "마이페이지 모임방 좋아요 조회 결과 -------------------------------------------"
+                )
+                Log.d(ContentValues.TAG, "onResponse: ${response.body().toString()}")
+
+                if (response.body() != null) {
+                    if (response.body()!!.success) {
+                        val result = response.body() as CResponse
+                        checkComplete(result)
+                    } else {
+                        AlertDialog.Builder(context)
+                            .setTitle("마이페이지 모임방 좋아요 조회 실패")
+                            .setMessage(response.message().toString())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<CResponse>, t: Throwable) {
+                Log.d(
+                    ContentValues.TAG,
+                    "마이페이지 모임방 좋아요 검색 결과 실패 -------------------------------------------"
+                )
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+            }
+        })
+}
+
+
+fun connectPostConnectionLike(context: Context,connectionId:Long, checkComplete: (isComplete: Boolean) -> Unit) {
+    setJwt()
+    //2. service 객체 생성
+    retrofit.create(MypageService::class.java)
+        .postLikeConnection(jwt = jwtTokenValue!!,connectionId)
+        //4. 네트워크 통신
+        .enqueue(object : Callback<CResponse01> {
+            override fun onResponse(
+                call: Call<CResponse01>,
+                response: Response<CResponse01>
+            ) {
+                Log.d(
+                    ContentValues.TAG,
+                    "좋아요 등록 결과 -------------------------------------------"
+                )
+                Log.d(ContentValues.TAG, "onResponse: ${response.body().toString()}")
+
+                if (response.body() != null) {
+                    if (response.body()!!.success) {
+                        checkComplete(true)
+                    } else {
+                        AlertDialog.Builder(context)
+                            .setTitle("좋아요 등록 실패")
+                            .setMessage(response.message().toString())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<CResponse01>, t: Throwable) {
+                Log.d(
+                    ContentValues.TAG,
+                    "좋아요 등록 결과 실패 -------------------------------------------"
+                )
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+            }
+        })
+}
+
 

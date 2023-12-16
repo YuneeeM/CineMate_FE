@@ -5,11 +5,13 @@ import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.cinemate.R
 import com.example.cinemate.databinding.SearchMovieListItemBinding
+import com.example.cinemate.mypage.connectPostMovieLike
 import com.example.cinemate.searchpage.Item
 import com.example.cinemate.searchpage.MovieResponse
 
@@ -38,7 +40,7 @@ class MainMovieMoreAdapter(var mainMovieData: MovieResponse, var context: Contex
         position: Int
     ) {
         when (holder) {
-            is RecyclerView.ViewHolder -> holder.bind(mainMovieData.result[position])
+            is MainMovieMoreViewHolder -> holder.bind(mainMovieData.result[position])
         }
     }
 
@@ -58,6 +60,29 @@ class MainMovieMoreAdapter(var mainMovieData: MovieResponse, var context: Contex
             binding.searchMovieListRatings.text = "평점 : ${data.usrRating}"
             binding.searchMovieListPubdate.text = "개봉일 : ${data.pubDate}"
 
+
+            binding.mainMovieLikeBtn.setOnClickListener {
+                // 현재 상태를 토글
+                val isSelected = !binding.mainMovieLikeBtn.isSelected
+                binding.mainMovieLikeBtn.isSelected = isSelected
+
+                // 색상 변경
+                if (isSelected) {
+
+                    val color = ContextCompat.getColorStateList(context, R.color.colorSelected)
+                    binding.mainMovieLikeBtn.imageTintList = color
+
+                    connectPostMovieLike(context, data.title, checkComplete = {
+                        checkPostLike(it)
+                    })
+
+
+                } else {
+                    val color = ContextCompat.getColorStateList(context, R.color.colorUnselected1)
+                    binding.mainMovieLikeBtn.imageTintList = color
+                }
+            }
+
             // 클릭시 웹사이트 연결
             binding.mainMovieListImg.setOnClickListener {
                 val webpage = Uri.parse("${data.link}")
@@ -65,7 +90,15 @@ class MainMovieMoreAdapter(var mainMovieData: MovieResponse, var context: Contex
                 binding.root.context.startActivity(webIntent)
             }
         }
+
+        fun checkPostLike(it: Boolean) {
+            if (it) {
+                System.out.println("성공")
+            }
+
+        }
     }
+
 
     fun updateData(newMovieResponse: MovieResponse) {
         mainMovieData = newMovieResponse

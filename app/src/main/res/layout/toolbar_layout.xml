@@ -29,13 +29,14 @@
             android:id="@+id/toolbar_logout_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_alignParentRight="true"
             android:layout_marginVertical="20dp"
             android:layout_marginRight="22dp"
             android:background="@android:color/transparent"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/baseline_logout_24"
-            android:layout_alignParentRight="true"
-            app:tint="@android:color/white" />
+            app:tint="@android:color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </RelativeLayout>
 
 </androidx.appcompat.widget.Toolbar>

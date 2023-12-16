@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/f_new_people"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragment.NewPeopleFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar22"
+            layout="@layout/toolbar_layout" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar22">
+
+
+            <LinearLayout
+                android:id="@+id/people_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar22"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/newPeople_title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="영화 제목"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/newPeople_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#E1CDD4"
+                    android:layout_below="@id/newPeople_title_tv"
+                    android:hint="영화 제목을 입력해주세요!"
+                    android:padding="15dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#707070"
+                    android:textSize="15sp"
+                    android:inputType="text"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/newPeople_address_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text="주소"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/newPeople_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/newPeople_address_tv"
+                    android:hint="주소를 입력해주세요!"
+                    android:inputType="text"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#E1CDD4"
+                    android:padding="15dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#707070"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/newPeople_theater_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text="극장"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/newPeople_theater"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_below="@id/newPeople_theater_tv"
+                    android:hint="극장을 입력해주세요!"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#E1CDD4"
+                    android:padding="15dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#707070"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/newPeople_date_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text="상영날짜"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/newPeople_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/newPeople_date_tv"
+                    android:hint="상영날짜를 입력해주세요!"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#E1CDD4"
+                    android:inputType="date"
+                    android:padding="15dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#707070"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/newPeople_content_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text="소개글"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/newPeople_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/newPeople_content_tv"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="#E1CDD4"
+                    android:gravity="top|start"
+                    android:hint="소개글을 입력해주세요!"
+                    android:inputType="textMultiLine"
+                    android:padding="15dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#707070"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/newPeople_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_login_edit"
+                    android:backgroundTint="@color/colorSelected"
+                    android:text="모임방 생성"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

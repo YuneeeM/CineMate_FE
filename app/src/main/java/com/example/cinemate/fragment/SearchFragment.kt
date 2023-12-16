@@ -41,7 +41,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Toolbar
-        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar03)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         // 로그아웃 버튼 선택
@@ -52,7 +52,12 @@ class SearchFragment : Fragment() {
 
         binding.searchMovieBtn.setOnClickListener {
             if (binding.searchMovieEdit.text.isNotEmpty()) {
-                connectSearchData(binding.searchMovieEdit.text.toString()) { successSearchDate(it) }
+                connectSearchData(
+                    requireContext(),
+                    binding.searchMovieEdit.text.toString(),
+                    checkComplete = {
+                        successSearchDate(it)
+                    })
             }
 
             // 키보드 숨기기
@@ -69,7 +74,7 @@ class SearchFragment : Fragment() {
                 ApplicationClass.sharedPreferences.removeString("jwt")
 
                 // LoginActivity로 이동합니다.
-                val intent = Intent(context, LoginActivity::class.java)
+                val intent = Intent(requireActivity(), LoginActivity::class.java)
 
                 // 이전 액티비티를 모두 삭제하고 이 액티비티를 새로운 작업의 최상위로 만듭니다.
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -1,7 +1,9 @@
 package com.example.cinemate.homepage
 
 import android.content.ContentValues
+import android.content.Context
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.retrofitUtil
 import com.example.cinemate.searchpage.MovieResponse
@@ -21,7 +23,7 @@ fun setJwt() {
     jwtTokenValue = ApplicationClass.sharedPreferences.getString("jwt","")
 }
 
-fun connectMainBoxoffice ( checkComplete: (it: MovieResponse) -> Unit){
+fun connectMainBoxoffice (context: Context, checkComplete: (it: MovieResponse) -> Unit){
     //2. service 객체 생성
     retrofit.create(HomeService::class.java)
         .mainMovie()
@@ -35,6 +37,15 @@ fun connectMainBoxoffice ( checkComplete: (it: MovieResponse) -> Unit){
                     if (response.body()!!.success){
                         val result = response.body() as MovieResponse
                         checkComplete(result)
+                    }  else {
+                        AlertDialog.Builder(context)
+                            .setTitle("영화 순위 실패")
+                            .setMessage(response.message())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
 
                 }

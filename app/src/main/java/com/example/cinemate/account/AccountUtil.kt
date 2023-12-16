@@ -40,6 +40,15 @@ fun connectLogin(
                 if (response.body() != null) {
                     if (response.body()!!.result != null) {
                         checkComplete(response.body()!!.result)
+                    }  else {
+                        AlertDialog.Builder(context)
+                            .setTitle("로그인 실패")
+                            .setMessage(response.message())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
 
                 }
@@ -81,6 +90,15 @@ fun connectSignup(
                 if (response.body() != null) {
                     if (response.body()!!.success) {
                         checkComplete(true)
+                    } else {
+                        AlertDialog.Builder(context)
+                            .setTitle("회원가입 실패")
+                            .setMessage(response.message())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
 
                 }
@@ -123,6 +141,15 @@ fun connectKakao(
                 if (response.body()!!.result != null) {
                     if (response.body()!!.success) {
                         checkComplete(response.body()!!.result)
+                    }  else {
+                        AlertDialog.Builder(context)
+                            .setTitle("카카오 로그인 실패")
+                            .setMessage(response.message())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
 
                 }
@@ -160,6 +187,15 @@ fun connectAuto(context: Context, checkComplete: (token: AutoLoginResult) -> Uni
                 if (response.body()!!.result != null) {
                     if (response.body()!!.success) {
                         checkComplete(response.body()!!.result)
+                    }  else {
+                        AlertDialog.Builder(context)
+                            .setTitle("자동 로그인 실패")
+                            .setMessage(response.message())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
 
                 }

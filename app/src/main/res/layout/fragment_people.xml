@@ -114,7 +114,7 @@
                     android:background="@drawable/bg_login_edit"
                     android:backgroundTint="#CB9BD3"
                     android:hint="날짜"
-                    android:inputType="date"
+                    android:inputType="phone"
                     android:padding="15dp"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"

@@ -14,11 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.R
 import com.example.cinemate.account.LoginActivity
+import com.example.cinemate.adapter.ConnectionLikeAdapter
 import com.example.cinemate.adapter.ConnectionUserAdapter
 import com.example.cinemate.adapter.MovieLikeAdapter
 import com.example.cinemate.databinding.FragmentMypageBinding
+import com.example.cinemate.mypage.CResponse
 import com.example.cinemate.mypage.MovieLikeResponse
 import com.example.cinemate.mypage.MypageResult
+import com.example.cinemate.mypage.connectConnectionLike
 import com.example.cinemate.mypage.connectConnectionUser
 import com.example.cinemate.mypage.connectMovieLike
 import com.example.cinemate.mypage.connectMypageData
@@ -33,6 +36,8 @@ class MypageFragment : Fragment() {
     private lateinit var movieLikeAdapter: MovieLikeAdapter
 
     private lateinit var connectionUserAdapter: ConnectionUserAdapter
+
+    private lateinit var connectionLikeAdapter: ConnectionLikeAdapter
 
 
     override fun onCreateView(
@@ -68,7 +73,10 @@ class MypageFragment : Fragment() {
         connectMovieLike(requireContext(), checkComplete = { successMovieLike(it) })
 
         connectConnectionUser(requireContext(), checkComplete = {successConnectionUser(it)})
+
+        connectConnectionLike(requireContext(), checkComplete = {successConnectionLike(it)})
     }
+
 
     private fun successMypageData(it: MypageResult) {
         binding.mypageNickname.text = it.nickname
@@ -76,6 +84,7 @@ class MypageFragment : Fragment() {
         binding.mypageGenre.text = "좋아하는 장르 :  ${it.genre}"
     }
 
+    //영화 좋아요
     private fun successMovieLike(it: MovieLikeResponse) {
         if (!::movieLikeAdapter.isInitialized) {
             movieLikeAdapter = MovieLikeAdapter(it, requireContext())
@@ -88,6 +97,7 @@ class MypageFragment : Fragment() {
 
     }
 
+    //모임방 작성
     private fun successConnectionUser(it: ConnectionResponse) {
 
         if (!::connectionUserAdapter.isInitialized) {
@@ -100,6 +110,19 @@ class MypageFragment : Fragment() {
         }
 
     }
+
+    //모임방 좋아요
+    private fun successConnectionLike(it: CResponse) {
+        if (!::connectionLikeAdapter.isInitialized) {
+            connectionLikeAdapter = ConnectionLikeAdapter(it, requireContext())
+            binding.mypagePeopleLikeListRecyclerview.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.mypagePeopleLikeListRecyclerview.adapter = connectionLikeAdapter
+        } else {
+            connectionLikeAdapter.updateData(it) // 기존 어댑터 업데이트 로직
+        }
+    }
+
 
     private fun showLogoutDialog() {
         AlertDialog.Builder(requireContext())

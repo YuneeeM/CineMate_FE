@@ -54,4 +54,45 @@ data class ConnectionResult(
     @SerializedName("nickname") val nickname: String
 )
 
+data class CommentResponse(
+    @SerializedName("isSuccess")
+    val success: Boolean,
+
+    @SerializedName("code")
+    val code: Int,
+
+    @SerializedName("message")
+    val message: String,
+
+    @SerializedName("result")
+    val result: List<CommentResult>
+
+)
+
+
+data class CommentResponse01(
+    @SerializedName("isSuccess")
+    val success: Boolean,
+
+    @SerializedName("code")
+    val code: Int,
+
+    @SerializedName("message")
+    val message: String,
+
+    @SerializedName("result")
+    val result: CommentResult
+
+)
+
+data class CommentResult(
+    @SerializedName("commentId") val commentId: String,
+    @SerializedName("body") val body: String,
+
+    @SerializedName("createAt") val createAt: String,
+    @SerializedName("nickname") val nickname: String,
+    @SerializedName("connectionId") val connectionId: String,
+
+    )
+
 

@@ -23,5 +23,7 @@ data class Item(
     @SerializedName("pubDate") val pubDate : String,
     @SerializedName("director") val director : String,
     @SerializedName("actor") val actor : String,
-    @SerializedName("userRating") val usrRating : String
+    @SerializedName("userRating") val usrRating : String,
+    @SerializedName("genre") val genre : String
+
 )

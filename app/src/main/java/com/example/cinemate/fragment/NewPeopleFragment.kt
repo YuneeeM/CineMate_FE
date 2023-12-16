@@ -12,29 +12,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemate.ApplicationClass
 import com.example.cinemate.R
 import com.example.cinemate.account.LoginActivity
 import com.example.cinemate.adapter.PeopleAdapter
-import com.example.cinemate.databinding.FragmentPeopleBinding
+import com.example.cinemate.databinding.FragmentNewPeopleBinding
+import com.example.cinemate.peoplepage.ConnectionRequest
 import com.example.cinemate.peoplepage.ConnectionResponse
-import com.example.cinemate.peoplepage.connectPeopleData
+import com.example.cinemate.peoplepage.connectPostData
+
+class NewPeopleFragment : Fragment() {
 
 
-class PeopleFragment : Fragment() {
-
-    private var _binding:FragmentPeopleBinding? = null
+    private var _binding: FragmentNewPeopleBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var rvAdapter: PeopleAdapter
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentPeopleBinding.inflate(inflater)
+        _binding = FragmentNewPeopleBinding.inflate(inflater)
         return binding.root
     }
 
@@ -42,7 +40,7 @@ class PeopleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Toolbar
-        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar02)
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar22)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         // 로그아웃 버튼 선택
@@ -51,42 +49,39 @@ class PeopleFragment : Fragment() {
             showLogoutDialog()
         }
 
-        binding.peopleMakeBtn.setOnClickListener{
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.f_people, NewPeopleFragment())
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
-
-        binding.peopleSearchBtn.setOnClickListener{
-            if(binding.peopleMovieEdit.text.isNotEmpty() &&
-                binding.peopleTownEdit.text.isNotEmpty()){
-                connectPeopleData(requireContext(),binding.peopleMovieEdit.text.toString(),
-                    binding.peopleTownEdit.text.toString(),
-                    binding.peopleDateEdit.text.toString(), checkComplete ={
-                        successPeopleData(it)
-                    }
-                )
-            }
+        binding.newPeopleBtn.setOnClickListener {
 
             // 키보드 숨기기
             hideKeyboard()
+
+            val title = binding.newPeopleTitle.text.toString()
+            val address = binding.newPeopleAddress.text.toString()
+            val theater = binding.newPeopleTheater.text.toString()
+            val date = binding.newPeopleDate.text.toString()
+            val content = binding.newPeopleContent.text.toString()
+
+            if (title != null && address != null && theater != null && date != null && content != null) {
+
+                connectPostData(
+                    requireContext(),
+                    ConnectionRequest(title, address, theater, date, content),
+                    checkComplete = { checkPost(it) })
+            }
+
+
         }
 
 
     }
 
-    private fun successPeopleData(it: ConnectionResponse) {
-        if (!::rvAdapter.isInitialized) {
-            rvAdapter = PeopleAdapter(it, requireContext())
-            binding.peopleListRecyclerview.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            binding.peopleListRecyclerview.adapter = rvAdapter
-        } else {
-            rvAdapter.updateData(it)
+    private fun checkPost(it: Boolean) {
+        if (it) {
+            // FragmentManager를 통해 Fragment 스택에서 현재 Fragment를 pop하고 이전 Fragment로 돌아감
+            fragmentManager?.popBackStack()
         }
 
     }
+
 
     private fun showLogoutDialog() {
         AlertDialog.Builder(requireContext())
@@ -120,7 +115,6 @@ class PeopleFragment : Fragment() {
             InputMethodManager.HIDE_NOT_ALWAYS
         )
     }
-
 
 
     override fun onDestroyView() {

@@ -58,3 +58,39 @@ fun connectPeopleData (context: Context, title:String, address:String, meatDate:
             }
         })
 }
+
+
+fun connectPostData (context: Context, connectionRequest: ConnectionRequest,  checkComplete: (isComplete: Boolean) -> Unit){
+    setJwt()
+    //2. service 객체 생성
+    retrofit.create(PeopleService::class.java)
+        .postConnection(jwt = jwtTokenValue!!,connectionRequest)
+        //4. 네트워크 통신
+        .enqueue(object : Callback<ConnectionResponse01> {
+            override fun onResponse(call: Call<ConnectionResponse01>, response: Response<ConnectionResponse01>) {
+                Log.d(ContentValues.TAG, "모임방 등록 결과 -------------------------------------------")
+                Log.d(ContentValues.TAG, "onResponse: ${response.body().toString()}")
+
+                if(response.body() != null) {
+                    if (response.body()!!.success){
+                        checkComplete(true)
+                    } else {
+                        AlertDialog.Builder(context)
+                            .setTitle("모임방 등록 실패")
+                            .setMessage(response.message())
+                            .setPositiveButton("확인") { dialog, _ ->
+                                // '확인'를 클릭했을 때는 아무런 동작도 하지 않고 다이얼로그를 닫습니다.
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<ConnectionResponse01>, t: Throwable) {
+                Log.d(ContentValues.TAG, "모임방 등록 결과 실패 -------------------------------------------")
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+            }
+        })
+}

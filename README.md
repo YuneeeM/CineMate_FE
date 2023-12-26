@@ -36,7 +36,7 @@
 <h4> Environment </h4>
 
 ![intellij](https://img.shields.io/badge/IntelliJ-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-![AndroidStudio](https://img.shields.io/badge/AndroidStudio-3DDC84.svg?style=for-the-badge&logo=android-studio&logoColor=white)
+![AndroidStudio](https://img.shields.io/badge/Android Studio-3DDC84.svg?style=for-the-badge&logo=android-studio&logoColor=white)
 
 <h4> Development </h4>
 

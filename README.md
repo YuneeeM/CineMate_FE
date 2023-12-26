@@ -7,7 +7,7 @@
 </head>
 <div id="header" align="center">
 
-<img alt="image" src="src/main/res/drawable/cinemate_logo.png" width="329"/><br><br>
+<img alt="image" src="app/src/main/res/drawable/cinemate_logo.png" width="329"/><br><br>
 
 <font size=3></b></font><br>
 영화를 사랑하는 사람들을 연결하여 소셜 모임을 조직하는 어플<br><br>

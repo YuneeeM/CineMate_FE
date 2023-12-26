@@ -1,4 +1,3 @@
-# CineMate_FE
 
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +36,7 @@
 <h4> Environment </h4>
 
 ![intellij](https://img.shields.io/badge/IntelliJ-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-![Android Studio](https://img.shields.io/badge/Android Studio-3DDC84?style=flat-square&logo=Android Studio&logoColor=white)
+![AndroidStudio](https://img.shields.io/badge/Android&Studio-3DDC84?style=flat-square&logo=Android Studio&logoColor=white)
 
 <h4> Development </h4>
 
@@ -61,8 +60,8 @@
 
 <div>
 <h2>🤔 문제 정의</h2>
-현대 사회에서의 개인화와 디지털화로 인해 혼자 시간을 보내는 경우가 많아졌습니다.<br>
-이 어플인 ‘시네메이트’는 사회적 연결을 강화하고, 영화를 통해서 소셜 모임을 유도하여 사람들 간 교류와 친목을 증진시키고자 합니다.
+<p>현대 사회에서의 개인화와 디지털화로 인해 혼자 시간을 보내는 경우가 많아졌습니다.</p>
+<p>이 어플인 ‘시네메이트’는 사회적 연결을 강화하고, 영화를 통해서 소셜 모임을 유도하여 사람들 간 교류와 친목을 증진시키고자 합니다.</p>
 
 </div>
 
@@ -96,17 +95,17 @@
     <th>로그아웃 페이지</th>
 </tr>
 <tr align="center">
-    <td> <img width="329" src="src\main\res\drawable\login.png"/></td>
-    <td> <img width="329" src="src\main\res\drawable\signup.png"/></td>
-    <td> <img width="329" src="src\main\res\drawable\logout.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\login.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\signup.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\logout.png"/></td>
 </tr>
 <tr>
     <th >홈 페이지</th>
     <th >홈 - 더보기 페이지</th>
 </tr>
 <tr align="center">
-    <td> <img width="329" src="src\main\res\drawable\home.png"/></td>
-    <td> <img width="329" src="src\main\res\drawable\main_2.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\home.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\main_2.png"/></td>
 
 </tr>
 <tr>
@@ -116,18 +115,18 @@
     <th >모임방 더보기</th>
 </tr>
 <tr align="center">
-    <td> <img width="329" src="src\main\res\drawable\people1.png"/></td>
-    <td> <img width="329" src="src\main\res\drawable\people2.png"/></td>
-    <td> <img width="329" src="src\main\res\drawable\people3.png"/></td>
-    <td> <img width="329" src="src\main\res\drawable\people4.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\people1.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\people2.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\people3.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\people4.png"/></td>
 </tr>
 <tr>
     <th >검색</th>
     <th >마이페이지</th>
 </tr>
 <tr align="center">
-    <td> <img width="329" src="src\main\res\drawable\search.png"/></td>
-    <td> <img width="329" src="src\main\res\drawable\mypage.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\search.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\mypage.png"/></td>
 </tr>
 
 </table>
@@ -139,7 +138,7 @@
 
 <div>
 <h2>🔎 아키텍쳐</h2>
-<img width="500" alt="image02" src="src/main/res/drawable/cinemate_architecture.png">
+<img width="500" alt="image02" src="app/src/main/res/drawable/cinemate_architecture.png">
 </div>
 
 <br>
@@ -147,7 +146,7 @@
 
 <div>
 <h2>🛠 DB 다이어그램</h2>
-<img width="500" alt="image03" src="src/main/res/drawable/db_diagram.png">
+<img width="500" alt="image03" src="app/src/main/res/drawable/db_diagram.png">
 </div>
 
 <br>

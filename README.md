@@ -36,11 +36,11 @@
 <h4> Environment </h4>
 
 ![intellij](https://img.shields.io/badge/IntelliJ-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-![AndroidStudio](https://img.shields.io/badge/Android%Studio-3DDC84?style=flat-square&logo=Android%Studio&logoColor=white)
+![AndroidStudio](https://img.shields.io/badge/AndroidStudio-3DDC84.svg?style=for-the-badge&logo=android-studio&logoColor=white)
 
 <h4> Development </h4>
 
-![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![springboot](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=Springboot&logoColor=white)
 
 [//]: # (![]&#40;https://img.shields.io/badge/-?style=for-the-badge&logo=Strapi&logoColor=white&#41;)

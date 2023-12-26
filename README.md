@@ -9,7 +9,7 @@
 <img alt="image" src="app/src/main/res/drawable/cinemate_logo.png" width="329"/><br><br>
 
 <font size=3></b></font><br>
-<h5>영화를 사랑하는 사람들을 연결하여 소셜 모임을 조직하는 어플</h5> <br>
+<h4>영화를 사랑하는 사람들을 연결하여 소셜 모임을 조직하는 어플</h4> 
 <h5>사용자들이 공통된 영화 관심사를 기반으로 모임을 형성하고, 영화를 통한 소셜 모임을 촉진하여 교류와 친목을 증진시키는 플랫폼입니다.</h5>
 
 

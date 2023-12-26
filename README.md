@@ -36,7 +36,7 @@
 <h4> Environment </h4>
 
 ![intellij](https://img.shields.io/badge/IntelliJ-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-![AndroidStudio](https://img.shields.io/badge/Android&Studio-3DDC84?style=flat-square&logo=Android Studio&logoColor=white)
+![AndroidStudio](https://img.shields.io/badge/Android%Studio-3DDC84?style=flat-square&logo=Android%Studio&logoColor=white)
 
 <h4> Development </h4>
 
@@ -102,29 +102,27 @@
 <tr>
     <th >홈 페이지</th>
     <th >홈 - 더보기 페이지</th>
+    <th >모임 페이지</th>
+    <th >모임방 만들기</th>
 </tr>
 <tr align="center">
     <td> <img width="329" src="app\src\main\res\drawable\home.png"/></td>
     <td> <img width="329" src="app\src\main\res\drawable\main_2.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\people1.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\people2.png"/></td>
 
 </tr>
 <tr>
-    <th >모임 페이지</th>
-    <th >모임방 만들기</th>
+ 
     <th >모임방 검색</th>
     <th >모임방 더보기</th>
-</tr>
-<tr align="center">
-    <td> <img width="329" src="app\src\main\res\drawable\people1.png"/></td>
-    <td> <img width="329" src="app\src\main\res\drawable\people2.png"/></td>
-    <td> <img width="329" src="app\src\main\res\drawable\people3.png"/></td>
-    <td> <img width="329" src="app\src\main\res\drawable\people4.png"/></td>
-</tr>
-<tr>
     <th >검색</th>
     <th >마이페이지</th>
 </tr>
 <tr align="center">
+    
+    <td> <img width="329" src="app\src\main\res\drawable\people3.png"/></td>
+    <td> <img width="329" src="app\src\main\res\drawable\people4.png"/></td>
     <td> <img width="329" src="app\src\main\res\drawable\search.png"/></td>
     <td> <img width="329" src="app\src\main\res\drawable\mypage.png"/></td>
 </tr>
